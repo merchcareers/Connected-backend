@@ -218,57 +218,6 @@ export const loginHandler = catchAsync(
     }
 );
 
-
-
-// export const loginHandler = catchAsync(
-//     async (req: Request, res: Response, next: NextFunction) => {
-        
-//         const { phone_or_email, password } = req.body;
-
-//         const user = await User.findOne({
-//             $or: [{ email: phone_or_email }, { phone_number: phone_or_email }],
-//         }).select("+password");
-
-//         if (!user) return next(new AppError("User not found", 404));
-
-//         const isMatch = await bcrypt.compare(password, user.password);
-//         if (!isMatch) return next(new AppError("Invalid credentials", 401));
-//         if (!user.isEmailVerified) return next(new AppError("Please verify your email", 401));
-
-
-//         const account = { id: user._id, name: user.name, email: user.email, role: user.role };
-//         user.password = undefined;
-//         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
-
-//         const accessToken = GenerateAccessToken(account);
-//         const refreshToken = GenerateRefreshToken(account);
-
-//         res.cookie("e_access_token", accessToken, {
-//             httpOnly: true,
-//             secure: NODE_ENV === "production",
-//             sameSite: "none",
-//             partitioned: true,
-//             priority: "high",
-//             signed: true,
-//             maxAge: 60 * 24 * 60 * 60 * 1000,
-//             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-//         });
-
-//         res.cookie("e_refresh_token", refreshToken, {
-//             httpOnly: true,
-//             secure: NODE_ENV === "production",
-//             sameSite: "none",
-//             partitioned: true,
-//             signed: true,
-//             priority: "high",
-//             maxAge: 60 * 24 * 60 * 60 * 1000,
-//             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-//         });
-
-//         return AppResponse(res, "Login successful", 200, { accessToken, refreshToken, account });
-//     }
-// );
-
 // Change Password Handler
 export const ChangePasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {

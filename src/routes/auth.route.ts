@@ -16,7 +16,7 @@ router.put("/logout", logOutHandler);
 router.get("/confirm-access-token", Limiter, VerifyAccessToken, GetTokenDetailsHandler);
 router.get("/refresh-access-token", Limiter, refreshAccessTokenHandler);
 router.patch("/change-password", Limiter, ChangePasswordHandler);
-router.patch("/reset-password", VerifyTrackingToken, ResetPasswordHandler);
+router.patch("/reset-password", VerifyAccessToken, ResetPasswordHandler);
 
 
 

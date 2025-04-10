@@ -131,3 +131,21 @@
 2025-04-10T15:47:52.486Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
 2025-04-10T15:58:05.825Z [[32minfo[39m]: POST - /v1/api/auth/register
 2025-04-10T15:58:51.657Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-10T17:05:49.881Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T17:05:49.908Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T17:06:02.485Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-10T17:06:43.800Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T17:06:43.806Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T17:27:46.636Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-04-10T17:32:34.472Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-04-10T17:32:49.992Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-10T17:33:19.609Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-04-10T17:35:01.130Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T17:35:01.175Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T17:50:23.897Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T17:50:23.904Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T17:51:44.598Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-04-10T17:53:37.311Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-04-10T17:54:48.139Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-04-10T18:02:03.777Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-10T18:02:14.303Z [[32minfo[39m]: PUT - /v1/api/auth/logout
