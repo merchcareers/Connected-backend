@@ -1,35 +1,29 @@
-
+"use strict";
 // import { v2 as cloudinary } from 'cloudinary';
 // import dotenv from "dotenv";
 // import GenerateRandomId from "./GenerateRandomId";
 // import { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME } from "../serviceUrl";
 // dotenv.config();
-
 // cloudinary.config({
 //   cloud_name: CLOUDINARY_CLOUD_NAME,
 //   api_key: CLOUDINARY_API_KEY,
 //   api_secret: CLOUDINARY_API_SECRET
 // });
-
-
 // export const uploadMedia = async (
 //   files: Express.Multer.File[]
 // ): Promise<{ imageUrl: string; key: string }[]> => {
 //   const uploadPromises = files.map(async (file, index) => {
 //     const randomPrefix = GenerateRandomId();
 //     const key = `${randomPrefix}-${index}`;
-
 //     try {
 //       // Convert buffer to base64
 //       const b64 = Buffer.from(file.buffer).toString('base64');
 //       const dataURI = `data:${file.mimetype};base64,${b64}`;
-
 //       // Upload to Cloudinary
 //       const result = await cloudinary.uploader.upload(dataURI, {
 //         public_id: key,
 //         resource_type: 'auto' // Automatically detect resource type
 //       });
-
 //       return {
 //         imageUrl: result.secure_url,
 //         key: result.public_id
@@ -41,7 +35,6 @@
 //       );
 //     }
 //   });
-
 //   try {
 //     return await Promise.all(uploadPromises);
 //   } catch (err) {
@@ -49,7 +42,6 @@
 //     throw new Error("Failed to upload all files.");
 //   }
 // };
-
 // export const deleteImage = async (keys: string[]): Promise<void> => {
 //   const deletePromises = keys.map(async (key) => {
 //     try {
@@ -65,7 +57,6 @@
 //       throw new Error(`Could not delete file from Cloudinary: ${error}`);
 //     }
 //   });
-
 //   try {
 //     await Promise.all(deletePromises);
 //   } catch (error) {
