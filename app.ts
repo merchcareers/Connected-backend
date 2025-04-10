@@ -74,7 +74,7 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("Hi");
 });
 
-app.all("*", (req: Request, res: Response, next: NextFunction) => {
+app.all("/*splat", (req: Request, res: Response, next: NextFunction) => {
   const errorMessage = `Can not find ${req.originalUrl} with ${req.method} on this server`;
   logger.warn(errorMessage);
   next(new AppError(errorMessage, 501));
