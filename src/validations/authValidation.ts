@@ -4,6 +4,14 @@ export const registerSchema = z.object({
   name: z
     .string({ required_error: "Name is required" })
     .min(3, "Name must be atleast 3 characters long"),
+  username: z
+    .string({ required_error: "Username is required" })
+    .min(3, "Username must be atleast 3 characters long")
+    .max(20, "Username must not exceed 20 characters")
+    .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores")
+    .refine((val) => !val.startsWith("_"), {
+      message: "Username cannot start with an underscore",
+    }),  
   email: z
     .string({ required_error: "Email is required" })
     .email("Invalid email address"),
@@ -23,9 +31,9 @@ export const registerSchema = z.object({
       message: "Password must contain at least one special character.",
     }),
   role: z
-    .enum(["buyer", "seller"], { required_error: "Role is required" })
-    .refine((value) => ["buyer", "seller"].includes(value), {
-      message: "Role must be either 'buyer or seller'.",
+    .enum(["student", "mentor", "recruiter", "freelancer"], { required_error: "Role is required" })
+    .refine((value) => ["student", "mentor", "recruiter", "freelancer"].includes(value), {
+      message: "Account type must be either 'student', 'freelancer', 'mentor', or 'recruiter'.",
     }),
 });
 export const verifyEmailOtpSchema = z.object({
@@ -39,12 +47,12 @@ export const verifyEmailOtpSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  phone_or_email: z
-    .string({ required_error: "Email or phone number is required" })
+  phone_email_or_username: z
+    .string({ required_error: "Email, Username or phone number is required" })
     .refine(
       (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{13}$/.test(val),
       {
-        message: "Must be a valid email or an 11-digit phone number",
+        message: "Must be a valid username, email or an 11-digit phone number",
       }
     ),
 
