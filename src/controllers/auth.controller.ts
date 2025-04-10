@@ -326,7 +326,7 @@ export const verifyEmailHandler = catchAsync(
             const { otp, email } = req.body as { otp: string; email: string };
 
             const findUser: any = await User.findOne({ email })
-                .select("+password")
+                .select("+password");
 
             if (!findUser) {
                 return next(new AppError("User not found", 404));
@@ -335,7 +335,6 @@ export const verifyEmailHandler = catchAsync(
             const userDate = findUser.otpExpires;
             const dateToCheck = userDate ? new Date(userDate) : new Date(0);
             const now = new Date();
-            const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
 
             if (findUser.otp === otp) {
                 if (findUser.isEmailVerified) {
@@ -343,7 +342,9 @@ export const verifyEmailHandler = catchAsync(
                         new AppError("This user has already verified their account.", 400)
                     );
                 }
-                if (dateToCheck < twentyFourHoursAgo) {
+
+                // Check if current time is past the expiration time
+                if (now > dateToCheck) {
                     return next(
                         new AppError("This OTP has expired. Please request a new one.", 400)
                     );
@@ -410,10 +411,10 @@ export const verifyEmailHandler = catchAsync(
         } catch (error) {
             console.error("Error during email verification:", error);
             return next(new AppError("Email verification failed", 500));
-
         }
     }
 );
+
 
 
 

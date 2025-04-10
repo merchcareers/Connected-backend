@@ -104,3 +104,30 @@
 2025-04-10T14:17:54.060Z [[32minfo[39m]: Server running on port 3100
 2025-04-10T14:22:33.769Z [[32minfo[39m]: Successfully connected to DB
 2025-04-10T14:22:33.776Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:09:20.317Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:09:20.362Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:13:14.516Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:13:14.524Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:16:08.306Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:16:08.316Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:22:11.309Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:22:11.340Z [[32minfo[39m]: Server running on port 3000
+2025-04-10T15:25:02.920Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:25:02.929Z [[32minfo[39m]: Server running on port 3000
+2025-04-10T15:26:24.521Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:26:24.531Z [[32minfo[39m]: Server running on port 3000
+2025-04-10T15:34:23.002Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:34:23.007Z [[32minfo[39m]: Server running on port 3000
+2025-04-10T15:35:25.692Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:35:25.700Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:35:29.292Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-10T15:37:38.342Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-10T15:45:14.586Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:45:14.596Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:45:35.038Z [[32minfo[39m]: Successfully connected to DB
+2025-04-10T15:45:35.045Z [[32minfo[39m]: Server running on port 3100
+2025-04-10T15:45:44.323Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-10T15:47:10.626Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-10T15:47:52.486Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-10T15:58:05.825Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-10T15:58:51.657Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email

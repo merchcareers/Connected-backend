@@ -93,7 +93,7 @@ app.use("/v1/api/auth", auth_route_1.default);
 app.get("/", (req, res, next) => {
     res.send("Hi");
 });
-app.all("/*splat", (req, res, next) => {
+app.use("*", (req, res, next) => {
     const errorMessage = `Can not find ${req.originalUrl} with ${req.method} on this server`;
     logger_1.default.warn(errorMessage);
     next(new AppError_1.default(errorMessage, 501));

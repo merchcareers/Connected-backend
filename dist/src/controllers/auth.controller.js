@@ -281,12 +281,12 @@ exports.verifyEmailHandler = (0, catchAsync_1.default)((req, res, next) => __awa
         const userDate = findUser.otpExpires;
         const dateToCheck = userDate ? new Date(userDate) : new Date(0);
         const now = new Date();
-        const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
         if (findUser.otp === otp) {
             if (findUser.isEmailVerified) {
                 return next(new AppError_1.default("This user has already verified their account.", 400));
             }
-            if (dateToCheck < twentyFourHoursAgo) {
+            // Check if current time is past the expiration time
+            if (now > dateToCheck) {
                 return next(new AppError_1.default("This OTP has expired. Please request a new one.", 400));
             }
             else {

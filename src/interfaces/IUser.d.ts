@@ -24,6 +24,7 @@ export interface IUser extends Document {
     portfolio?: string; // Optional URL (e.g., GitHub, Dribbble)
     isEmailVerified: boolean;
     otp: string; 
+    otpExpires: Date | null;
     isActive: boolean;
     lastLogin?: Date;
     createdAt?: Date;
