@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import bcrypt from "bcryptjs";
 import { IUser, IStudent, IMentor, IRecruiter, IFreelancer } from "../interfaces/IUser";
 
 // Base User Schema

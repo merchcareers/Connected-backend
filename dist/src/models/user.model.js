@@ -54,6 +54,7 @@ const UserSchema = new mongoose_1.Schema({
     portfolio: { type: String },
     isEmailVerified: { type: Boolean, default: false },
     otp: { type: String }, // OTP for email verification
+    otpExpires: { type: Date },
     isActive: { type: Boolean, default: true },
     lastLogin: { type: Date },
     createdAt: { type: Date, default: Date.now },

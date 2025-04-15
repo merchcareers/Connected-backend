@@ -10,6 +10,7 @@ import sendMail from "../config/nodemailer.config";
 import { GenerateAccessToken, GenerateRefreshToken } from "../helpers/GenerateToken";
 import { NODE_ENV, RefreshToken_Secret_Key } from "../serviceUrl";
 import GenerateRandomId, { generateRandomAlphanumeric } from "../helpers/GenerateRandomId";
+import { logger } from "handlebars";
 
 // Register Handler
 export const registerHandler = catchAsync(
@@ -133,57 +134,44 @@ export const resendVerificationEmail = catchAsync(
 export const loginHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const isMobile = req.headers.mobilereqsender;
-
         const { phone_email_or_username, password } = req.body;
-        // const user = await User.findOne({ email });
+        console.log("Login Request:", { phone_email_or_username, password });
+
         const user: any = await User.findOne({
-            $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }], 
+            $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }],
         })
             .select("+password")
             .populate("store");
 
+        console.log("User Found:", user ? user.email : "No user");
         if (!user) return next(new AppError("User not found", 404));
 
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log("Password Match:", isMatch);
         if (!isMatch) return next(new AppError("Invalid credentials", 401));
         if (!user.isEmailVerified)
             return next(new AppError("Please verify your email before log in.", 401));
-        // if (user.is_two_factor_enabled) {
-        //     //We should send a token here to track that okay, this person has had their password stuff done
-        //     const two_fa_track = {
-        //         id: user._id,
-        //         createdAt: Date.now(),
-        //     };
-        //     const two_fa_token = GenerateTrackingToken(two_fa_track);
-        //     return AppResponse(
-        //         res,
-        //         "Please check your Authenticator app for your token.",
-        //         200,
-        //         two_fa_token
-        //     );
-        // }
+
         const account = {
             id: user._id,
             name: user.name,
             username: user.username,
             email: user.email,
-            // phone_number: user.phone_number,
             role: user.role,
-            // profile_image:user.imageUrl,
         };
+        console.log("Account:", account);
 
-        // remove password from the user object
+        const accessToken = GenerateAccessToken(account);
+        const refreshToken = GenerateRefreshToken(account);
+        console.log("Tokens:", { accessToken, refreshToken });
+
         user.password = undefined;
-
         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
-        const accessToken: string | undefined = GenerateAccessToken(account);
-        const refreshToken: string | undefined = GenerateRefreshToken(account);
-        //If it is mobile we send token in response
 
         if (isMobile)
             return AppResponse(res, "Login successful", 200, {
-                accessToken: accessToken,
-                refreshToken: refreshToken,
+                accessToken,
+                refreshToken,
                 account: user,
             });
 
@@ -209,65 +197,216 @@ export const loginHandler = catchAsync(
             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
         });
 
-
         return AppResponse(res, "Login successful", 200, {
-            accessToken: accessToken,
-            refreshToken: refreshToken,
+            accessToken,
+            refreshToken,
             account: user,
         });
     }
 );
 
-// Change Password Handler
-export const ChangePasswordHandler = catchAsync(
+// export const loginHandler = catchAsync(
+//     async (req: Request, res: Response, next: NextFunction) => {
+//         const isMobile = req.headers.mobilereqsender;
+
+//         const { phone_email_or_username, password } = req.body;
+//         // const user = await User.findOne({ email });
+//         const user: any = await User.findOne({
+//             $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }], 
+//         })
+//             .select("+password")
+//             .populate("store");
+
+//         if (!user) return next(new AppError("User not found", 404));
+
+//         const isMatch = await bcrypt.compare(password, user.password);
+//         if (!isMatch) return next(new AppError("Invalid credentials", 401));
+//         if (!user.isEmailVerified)
+//             return next(new AppError("Please verify your email before log in.", 401));
+//         // if (user.is_two_factor_enabled) {
+//         //     //We should send a token here to track that okay, this person has had their password stuff done
+//         //     const two_fa_track = {
+//         //         id: user._id,
+//         //         createdAt: Date.now(),
+//         //     };
+//         //     const two_fa_token = GenerateTrackingToken(two_fa_track);
+//         //     return AppResponse(
+//         //         res,
+//         //         "Please check your Authenticator app for your token.",
+//         //         200,
+//         //         two_fa_token
+//         //     );
+//         // }
+//         const account = {
+//             id: user._id,
+//             name: user.name,
+//             username: user.username,
+//             email: user.email,
+//             // phone_number: user.phone_number,
+//             role: user.role,
+//             // profile_image:user.imageUrl,
+//         };
+
+//         // remove password from the user object
+//         user.password = undefined;
+
+//         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+//         const accessToken: string | undefined = GenerateAccessToken(account);
+//         const refreshToken: string | undefined = GenerateRefreshToken(account);
+//         //If it is mobile we send token in response
+
+//         if (isMobile)
+//             return AppResponse(res, "Login successful", 200, {
+//                 accessToken: accessToken,
+//                 refreshToken: refreshToken,
+//                 account: user,
+//             });
+
+//         res.cookie("e_access_token", accessToken, {
+//             httpOnly: true,
+//             secure: process.env.NODE_ENV === "production",
+//             sameSite: "none",
+//             partitioned: true,
+//             priority: "high",
+//             signed: true,
+//             maxAge: 60 * 24 * 60 * 60 * 1000,
+//             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+//         });
+
+//         res.cookie("e_refresh_token", refreshToken, {
+//             httpOnly: true,
+//             secure: process.env.NODE_ENV === "production",
+//             sameSite: "none",
+//             partitioned: true,
+//             signed: true,
+//             priority: "high",
+//             maxAge: 60 * 24 * 60 * 60 * 1000,
+//             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+//         });
+
+
+//         return AppResponse(res, "Login successful", 200, {
+//             accessToken: accessToken,
+//             refreshToken: refreshToken,
+//             account: user,
+//         });
+//     }
+// );
+
+export const forgotPasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const { email } = req.body;
-        const user = await User.findOne({ email });
 
-        if (!user) return next(new AppError("User not found", 404));
-        if (!user.isEmailVerified) return next(new AppError("Unverified email", 401));
+        // Find user by email
+        const user = await User.findOne({ email }).select("+otp +otpExpires");
+        if (!user) {
+            return next(new AppError("No user found with this email", 404));
+        }
 
-        const firstName = user.name.split(" ")[0];
+        // Generate 6-digit OTP
         const otpCode = generateRandomAlphanumeric();
+        const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
+        // Update user with OTP and expiration
+        user.otp = otpCode;
+        user.otpExpires = otpExpires;
+        await user.save();
+
+        // Prepare email
+        const firstName = user.name.split(" ")[0];
         const mailOptions = {
             email,
-            subject: "Confirm Your OTP",
+            subject: "Reset Your Password",
             templateName: "resetPassword",
             context: { name: firstName, otpCode },
         };
 
-        await user.save();
+        // Send email with retries
+        const maxRetries = 3;
+        let attempts = 0;
+        let emailSent = false;
 
-        try {
-            await sendMail(mailOptions);
-        } catch (error) {
-            console.error(`Error sending email to ${email}:`, error);
+        while (attempts < maxRetries && !emailSent) {
+            try {
+                await sendMail(mailOptions);
+                emailSent = true;
+            } catch (error) {
+                attempts++;
+                console.error(`Attempt ${attempts} failed:`, error);
+                if (attempts >= maxRetries) {
+                    return next(new AppError("Failed to send reset email", 500));
+                }
+            }
         }
 
-        return AppResponse(res, "OTP sent to your email.", 200, { email });
+        return AppResponse(res, "OTP sent to your email for password reset", 200, { email });
     }
 );
 
-// Reset Password Handler
-export const ResetPasswordHandler = catchAsync(
+export const resetPasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const { password } = req.body;
-        const id = (req.user as IUser)._id;
+        const { email, otp, newPassword } = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const updatedUser = await User.findByIdAndUpdate(
-            id,
-            { password: hashedPassword },
-            { new: true }
-        );
+        // Find user by email
+        const user: any = await User.findOne({ email }).select("+otp +otpExpires");
+        if (!user) {
+            return next(new AppError("No user found with this email", 404));
+        }
 
-        if (!updatedUser) return next(new AppError("User not found", 404));
-        return AppResponse(res, "Password reset successfully.", 200, null);
+        // Check OTP validity
+        if (user.otp !== otp) {
+            return next(new AppError("Invalid OTP", 400));
+        }
+
+        // Check OTP expiration
+        const now = new Date();
+        if (!user.otpExpires || now > user.otpExpires) {
+            return next(new AppError("OTP has expired", 400));
+        }
+
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update password and clear OTP
+        user.password = hashedPassword;
+        user.otp = undefined;
+        user.otpExpires = undefined;
+        await user.save();
+
+        return AppResponse(res, "Password reset successfully", 200, null);
     }
 );
 
+export const changePasswordHandler = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const { currentPassword, newPassword } = req.body;
+        const userId = (req.user as IUser)._id;
 
+        // console.log("Change Password Request:", { userId, currentPassword, newPassword });
+        
+
+        // Find user
+        const user = await User.findById(userId).select("+password");
+        if (!user) {
+            return next(new AppError("User not found", 404));
+        }
+
+        // Verify current password
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return next(new AppError("Current password is incorrect", 401));
+        }
+
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update password
+        user.password = hashedPassword;
+        await user.save();
+
+        return AppResponse(res, "Password changed successfully", 200, null);
+    }
+);
 
 export const verifyEmailHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {

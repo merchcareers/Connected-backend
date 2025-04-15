@@ -11,7 +11,7 @@ export const registerSchema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores")
     .refine((val) => !val.startsWith("_"), {
       message: "Username cannot start with an underscore",
-    }),  
+    }),
   email: z
     .string({ required_error: "Email is required" })
     .email("Invalid email address"),
@@ -45,6 +45,14 @@ export const verifyEmailOtpSchema = z.object({
     .string({ required_error: "Email is required" })
     .email("Invalid email address"),
 });
+
+export const VerifyOtpSchema = z.object({
+  body: z.object({
+    email: z.string().email("Invalid email address"),
+    otp: z.string().min(6, "OTP must be 6 characters").max(6, "OTP must be 6 characters"),
+  }),
+});
+
 
 export const loginSchema = z.object({
   phone_email_or_username: z
@@ -101,30 +109,34 @@ export const forgotPasswordSchema = z.object({
     .email("Invalid email address"),
 });
 
+export const resetPasswordSchema = z.object({
 
-export const resetPasswordSchema = z
-  .object({
-    password: z
-      .string({ required_error: "Password is required" })
-      .min(8, "Password must be at least 8 characters long")
-      .refine((val) => /[a-z]/.test(val), {
-        message: "Password must contain at least one lowercase letter",
-      })
-      .refine((val) => /[A-Z]/.test(val), {
-        message: "Password must contain at least one uppercase letter",
-      })
-      .refine((val) => /\d/.test(val), {
-        message: "Password must contain at least one digit",
-      })
-      .refine((val) => /[!@#$%^&*(),.?":{}|<>]/.test(val), {
-        message: "Password must contain at least one special character.",
-      }),
+  email: z
+    .string({ required_error: "Email is required" })
+    .email("Invalid email address"),
+  otp: z
+    .string({ required_error: "OTP is required" })
+    .min(6, "OTP must not be less than six characters"),
+  newPassword: z
+    .string({ required_error: "Password is required" })
+    .min(8, "Password must be at least 8 characters long")
+    .refine((val) => /[a-z]/.test(val), {
+      message: "Password must contain at least one lowercase letter",
+    })
+    .refine((val) => /[A-Z]/.test(val), {
+      message: "Password must contain at least one uppercase letter",
+    })
+    .refine((val) => /\d/.test(val), {
+      message: "Password must contain at least one digit",
+    })
 
-    confirm_password: z
-      .string({ required_error: "Confirm password is required" })
-      .min(8, "Confirm password must be at least 8 characters long"),
-  })
-  .refine((data) => data.password === data.confirm_password, {
-    path: ["confirm_password"],  
-    message: "Passwords do not match",
-  });
+});
+
+export const changePasswordSchema = z.object({
+
+  currentPassword: z
+    .string().min(6, "Current password must be at least 6 characters"),
+  newPassword: z
+    .string().min(6, "New password must be at least 6 characters"),
+    
+});

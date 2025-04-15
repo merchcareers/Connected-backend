@@ -9,7 +9,6 @@ import {
 } from "../serviceUrl";
 import { User } from "../models/user.model";
 
-
 interface CustomRequest extends Request {
   user?: any;
 }
