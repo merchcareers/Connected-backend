@@ -251,3 +251,13 @@
 2025-04-15T03:54:16.249Z [[32minfo[39m]: POST - /v1/api/auth/login
 2025-04-15T03:55:01.061Z [[32minfo[39m]: Successfully connected to DB
 2025-04-15T03:55:01.070Z [[32minfo[39m]: Server running on port 3100
+2025-04-16T13:20:53.097Z [[32minfo[39m]: Successfully connected to DB
+2025-04-16T13:20:53.191Z [[32minfo[39m]: Server running on port 3100
+2025-04-16T13:23:31.456Z [[32minfo[39m]: POST - /v1/api%7D/auth/login
+2025-04-16T13:23:31.458Z [[33mwarn[39m]: Can not find /v1/api%7D/auth/login with POST on this server
+2025-04-16T13:24:29.116Z [[32minfo[39m]: POST - /v1/api%7D/auth/login
+2025-04-16T13:24:29.116Z [[33mwarn[39m]: Can not find /v1/api%7D/auth/login with POST on this server
+2025-04-16T13:28:44.417Z [[32minfo[39m]: Successfully connected to DB
+2025-04-16T13:28:44.425Z [[32minfo[39m]: Server running on port 3100
+2025-04-16T13:29:06.383Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-16T13:46:39.019Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
