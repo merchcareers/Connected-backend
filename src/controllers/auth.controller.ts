@@ -1,81 +1,89 @@
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import speakeasy from "speakeasy";
-import qrcode from "qrcode";
 import catchAsync from "../errors/catchAsync";
 import AppResponse from "../helpers/AppResponse";
 import { Student, Mentor, Recruiter, Freelancer, User } from "../models/user.model"
 import AppError from "../errors/AppError";
 import { IUser } from "../interfaces/IUser";
 import sendMail from "../config/nodemailer.config";
-import { GenerateAccessToken, GenerateRefreshToken, GenerateTrackingToken } from "../helpers/GenerateToken";
+import { GenerateAccessToken, GenerateRefreshToken } from "../helpers/GenerateToken";
 import { NODE_ENV, RefreshToken_Secret_Key } from "../serviceUrl";
 import GenerateRandomId, { generateRandomAlphanumeric } from "../helpers/GenerateRandomId";
+import { logger } from "handlebars";
 
 // Register Handler
 export const registerHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const { role, name, email, password } = req.body;
+        try {
 
-        const userExists = await User.findOne({ email });
-        if (userExists) {
-            return next(new AppError("User already exists", 400));
-        }
+            const { role, name, username, email, password, country, phone } = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+            const userExists = await User.findOne({ email, username });
 
-        let user: any;
-        switch (role) {
-            case "student":
-                user = new Student({ name, email, role, password: hashedPassword, experienceLevel: "beginner" });
-                break;
-            case "mentor":
-                user = new Mentor({ name, email, role, password: hashedPassword, availability: "1 hr/week", experienceLevel: "intermediate" });
-                break;
-            case "recruiter":
-                user = new Recruiter({ name, email, role, password: hashedPassword });
-                break;
-            case "freelancer":
-                user = new Freelancer({ name, email, role, password: hashedPassword, experienceLevel: "beginner" });
-                break;
-            default:
-                return next(new AppError("Invalid role. Must be student, mentor, recruiter, or freelancer", 400));
-        }
+            if (userExists) {
+                return next(new AppError("User already exists", 400));
+            }
 
-        const firstName = name.split(" ")[0];
-        const otpCode = generateRandomAlphanumeric();
-        user.otp = otpCode;
-        user.otpExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+            const hashedPassword = await bcrypt.hash(password, 10);
 
-        const mailOptions = {
-            email,
-            subject: "Verify Your Email Address",
-            templateName: "verifyEmail",
-            context: { name: firstName, otpCode },
-        };
+            let user: any;
+            switch (role) {
+                case "student":
+                    user = new Student({ name, email, username, role, password: hashedPassword, experienceLevel: "beginner" });
+                    break;
+                case "mentor":
+                    user = new Mentor({ name, email, username, role, password: hashedPassword, availability: "1 hr/week", experienceLevel: "intermediate" });
+                    break;
+                case "recruiter":
+                    user = new Recruiter({ name, email, username, role, password: hashedPassword });
+                    break;
+                case "freelancer":
+                    user = new Freelancer({ name, email, username,  role, password: hashedPassword, experienceLevel: "beginner" });
+                    break;
+                default:
+                    return next(new AppError("Invalid role. Must be student, mentor, recruiter, or freelancer", 400));
+            }
 
-        await user.save();
+            const firstName = name.split(" ")[0];
+            const otpCode = generateRandomAlphanumeric();
+            user.otp = otpCode;
+            user.otpExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-        const maxRetries = 3;
-        let attempts = 0;
-        let emailSent = false;
+            const mailOptions = {
+                email,
+                subject: "Verify Your Email Address",
+                templateName: "verifyEmail",
+                context: { name: firstName, otpCode },
+            };
 
-        while (attempts < maxRetries && !emailSent) {
-            try {
-                await sendMail(mailOptions);
-                emailSent = true;
-            } catch (error) {
-                attempts++;
-                console.error(`Attempt ${attempts} failed:`, error);
-                if (attempts >= maxRetries) {
-                    console.log(`Failed to send email to ${email} after ${maxRetries} attempts.`);
+            await user.save();
+
+            const maxRetries = 3;
+            let attempts = 0;
+            let emailSent = false;
+
+            while (attempts < maxRetries && !emailSent) {
+                try {
+                    await sendMail(mailOptions);
+                    emailSent = true;
+                } catch (error) {
+                    attempts++;
+                    console.error(`Attempt ${attempts} failed:`, error);
+                    if (attempts >= maxRetries) {
+                        console.log(`Failed to send email to ${email} after ${maxRetries} attempts.`);
+                    }
                 }
             }
-        }
 
-        const account = { name, email, role };
-        return AppResponse(res, "Registration successful, please check email to verify.", 201, account);
+            const account = { name, username,  email, role, country, phone };
+            return AppResponse(res, "Registration successful, please check email to verify.", 201, account);
+            
+        } catch (error) {
+            console.error("Error during registration:", error);
+            return next(new AppError("Registration failed", 500));
+            
+        }
     }
 );
 
@@ -126,56 +134,44 @@ export const resendVerificationEmail = catchAsync(
 export const loginHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const isMobile = req.headers.mobilereqsender;
+        const { phone_email_or_username, password } = req.body;
+        console.log("Login Request:", { phone_email_or_username, password });
 
-        const { phone_or_email, password } = req.body;
-        // const user = await User.findOne({ email });
         const user: any = await User.findOne({
-            $or: [{ email: phone_or_email }, { phone_number: phone_or_email }],
+            $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }],
         })
             .select("+password")
             .populate("store");
 
+        console.log("User Found:", user ? user.email : "No user");
         if (!user) return next(new AppError("User not found", 404));
 
         const isMatch = await bcrypt.compare(password, user.password);
+        console.log("Password Match:", isMatch);
         if (!isMatch) return next(new AppError("Invalid credentials", 401));
         if (!user.isEmailVerified)
             return next(new AppError("Please verify your email before log in.", 401));
-        if (user.is_two_factor_enabled) {
-            //We should send a token here to track that okay, this person has had their password stuff done
-            const two_fa_track = {
-                id: user._id,
-                createdAt: Date.now(),
-            };
-            const two_fa_token = GenerateTrackingToken(two_fa_track);
-            return AppResponse(
-                res,
-                "Please check your Authenticator app for your token.",
-                200,
-                two_fa_token
-            );
-        }
+
         const account = {
             id: user._id,
             name: user.name,
+            username: user.username,
             email: user.email,
-            // phone_number: user.phone_number,
             role: user.role,
-            // profile_image:user.imageUrl,
         };
+        console.log("Account:", account);
 
-        // remove password from the user object
+        const accessToken = GenerateAccessToken(account);
+        const refreshToken = GenerateRefreshToken(account);
+        console.log("Tokens:", { accessToken, refreshToken });
+
         user.password = undefined;
-
         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
-        const accessToken: string | undefined = GenerateAccessToken(account);
-        const refreshToken: string | undefined = GenerateRefreshToken(account);
-        //If it is mobile we send token in response
 
         if (isMobile)
             return AppResponse(res, "Login successful", 200, {
-                accessToken: accessToken,
-                refreshToken: refreshToken,
+                accessToken,
+                refreshToken,
                 account: user,
             });
 
@@ -201,43 +197,74 @@ export const loginHandler = catchAsync(
             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
         });
 
-
         return AppResponse(res, "Login successful", 200, {
-            accessToken: accessToken,
-            refreshToken: refreshToken,
+            accessToken,
+            refreshToken,
             account: user,
         });
     }
 );
 
-
-
 // export const loginHandler = catchAsync(
 //     async (req: Request, res: Response, next: NextFunction) => {
-        
-//         const { phone_or_email, password } = req.body;
+//         const isMobile = req.headers.mobilereqsender;
 
-//         const user = await User.findOne({
-//             $or: [{ email: phone_or_email }, { phone_number: phone_or_email }],
-//         }).select("+password");
+//         const { phone_email_or_username, password } = req.body;
+//         // const user = await User.findOne({ email });
+//         const user: any = await User.findOne({
+//             $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }], 
+//         })
+//             .select("+password")
+//             .populate("store");
 
 //         if (!user) return next(new AppError("User not found", 404));
 
 //         const isMatch = await bcrypt.compare(password, user.password);
 //         if (!isMatch) return next(new AppError("Invalid credentials", 401));
-//         if (!user.isEmailVerified) return next(new AppError("Please verify your email", 401));
+//         if (!user.isEmailVerified)
+//             return next(new AppError("Please verify your email before log in.", 401));
+//         // if (user.is_two_factor_enabled) {
+//         //     //We should send a token here to track that okay, this person has had their password stuff done
+//         //     const two_fa_track = {
+//         //         id: user._id,
+//         //         createdAt: Date.now(),
+//         //     };
+//         //     const two_fa_token = GenerateTrackingToken(two_fa_track);
+//         //     return AppResponse(
+//         //         res,
+//         //         "Please check your Authenticator app for your token.",
+//         //         200,
+//         //         two_fa_token
+//         //     );
+//         // }
+//         const account = {
+//             id: user._id,
+//             name: user.name,
+//             username: user.username,
+//             email: user.email,
+//             // phone_number: user.phone_number,
+//             role: user.role,
+//             // profile_image:user.imageUrl,
+//         };
 
-
-//         const account = { id: user._id, name: user.name, email: user.email, role: user.role };
+//         // remove password from the user object
 //         user.password = undefined;
-//         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
 
-//         const accessToken = GenerateAccessToken(account);
-//         const refreshToken = GenerateRefreshToken(account);
+//         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
+//         const accessToken: string | undefined = GenerateAccessToken(account);
+//         const refreshToken: string | undefined = GenerateRefreshToken(account);
+//         //If it is mobile we send token in response
+
+//         if (isMobile)
+//             return AppResponse(res, "Login successful", 200, {
+//                 accessToken: accessToken,
+//                 refreshToken: refreshToken,
+//                 account: user,
+//             });
 
 //         res.cookie("e_access_token", accessToken, {
 //             httpOnly: true,
-//             secure: NODE_ENV === "production",
+//             secure: process.env.NODE_ENV === "production",
 //             sameSite: "none",
 //             partitioned: true,
 //             priority: "high",
@@ -248,7 +275,7 @@ export const loginHandler = catchAsync(
 
 //         res.cookie("e_refresh_token", refreshToken, {
 //             httpOnly: true,
-//             secure: NODE_ENV === "production",
+//             secure: process.env.NODE_ENV === "production",
 //             sameSite: "none",
 //             partitioned: true,
 //             signed: true,
@@ -257,149 +284,225 @@ export const loginHandler = catchAsync(
 //             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
 //         });
 
-//         return AppResponse(res, "Login successful", 200, { accessToken, refreshToken, account });
+
+//         return AppResponse(res, "Login successful", 200, {
+//             accessToken: accessToken,
+//             refreshToken: refreshToken,
+//             account: user,
+//         });
 //     }
 // );
 
-// Change Password Handler
-export const ChangePasswordHandler = catchAsync(
+export const forgotPasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const { email } = req.body;
-        const user = await User.findOne({ email });
 
-        if (!user) return next(new AppError("User not found", 404));
-        if (!user.isEmailVerified) return next(new AppError("Unverified email", 401));
+        // Find user by email
+        const user = await User.findOne({ email }).select("+otp +otpExpires");
+        if (!user) {
+            return next(new AppError("No user found with this email", 404));
+        }
 
-        const firstName = user.name.split(" ")[0];
+        // Generate 6-digit OTP
         const otpCode = generateRandomAlphanumeric();
+        const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
+        // Update user with OTP and expiration
+        user.otp = otpCode;
+        user.otpExpires = otpExpires;
+        await user.save();
+
+        // Prepare email
+        const firstName = user.name.split(" ")[0];
         const mailOptions = {
             email,
-            subject: "Confirm Your OTP",
+            subject: "Reset Your Password",
             templateName: "resetPassword",
             context: { name: firstName, otpCode },
         };
 
-        await user.save();
+        // Send email with retries
+        const maxRetries = 3;
+        let attempts = 0;
+        let emailSent = false;
 
-        try {
-            await sendMail(mailOptions);
-        } catch (error) {
-            console.error(`Error sending email to ${email}:`, error);
+        while (attempts < maxRetries && !emailSent) {
+            try {
+                await sendMail(mailOptions);
+                emailSent = true;
+            } catch (error) {
+                attempts++;
+                console.error(`Attempt ${attempts} failed:`, error);
+                if (attempts >= maxRetries) {
+                    return next(new AppError("Failed to send reset email", 500));
+                }
+            }
         }
 
-        return AppResponse(res, "OTP sent to your email.", 200, { email });
+        return AppResponse(res, "OTP sent to your email for password reset", 200, { email });
     }
 );
 
-// Reset Password Handler
-export const ResetPasswordHandler = catchAsync(
+export const resetPasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const { password } = req.body;
-        const id = (req.user as IUser)._id;
+        const { email, otp, newPassword } = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const updatedUser = await User.findByIdAndUpdate(
-            id,
-            { password: hashedPassword },
-            { new: true }
-        );
+        // Find user by email
+        const user: any = await User.findOne({ email }).select("+otp +otpExpires");
+        if (!user) {
+            return next(new AppError("No user found with this email", 404));
+        }
 
-        if (!updatedUser) return next(new AppError("User not found", 404));
-        return AppResponse(res, "Password reset successfully.", 200, null);
+        // Check OTP validity
+        if (user.otp !== otp) {
+            return next(new AppError("Invalid OTP", 400));
+        }
+
+        // Check OTP expiration
+        const now = new Date();
+        if (!user.otpExpires || now > user.otpExpires) {
+            return next(new AppError("OTP has expired", 400));
+        }
+
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update password and clear OTP
+        user.password = hashedPassword;
+        user.otp = undefined;
+        user.otpExpires = undefined;
+        await user.save();
+
+        return AppResponse(res, "Password reset successfully", 200, null);
     }
 );
 
-
-
-export const verifyEmailHandler = catchAsync(
+export const changePasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const { otp, email } = req.body as { otp: string; email: string };
+        const { currentPassword, newPassword } = req.body;
+        const userId = (req.user as IUser)._id;
 
-        const findUser: any = await User.findOne({ email })
-            .select("+password")
-            .populate("store");
+        // console.log("Change Password Request:", { userId, currentPassword, newPassword });
+        
 
-        if (!findUser) {
+        // Find user
+        const user = await User.findById(userId).select("+password");
+        if (!user) {
             return next(new AppError("User not found", 404));
         }
 
-        const userDate = findUser.otpExpires;
-        const dateToCheck = userDate ? new Date(userDate) : new Date(0);
-        const now = new Date();
-        const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-
-        if (findUser.otp === otp) {
-            if (findUser.isEmailVerified) {
-                return next(
-                    new AppError("This user has already verified their account.", 400)
-                );
-            }
-            if (dateToCheck < twentyFourHoursAgo) {
-                return next(
-                    new AppError("This OTP has expired. Please request a new one.", 400)
-                );
-            } else {
-                findUser.isEmailVerified = true;
-                findUser.otp = "";
-                findUser.otpExpires = null;
-                await findUser.save();
-
-                // Send welcome email
-                await sendMail({
-                    email: findUser.email,
-                    subject: "Welcome to Arennah!",
-                    templateName: "welcome",
-                    context: { name: findUser.name || "User" }, // Use name if available
-                }).catch((error: Error) =>
-                    console.error("Failed to send welcome email:", error)
-                );
-
-                // Send push notification
-                // if (findUser.fcm_token) {
-                //     const message: admin.messaging.Message = {
-                //         notification: {
-                //             title: "Welcome to Arennah!",
-                //             body: "Thank you for joining us!",
-                //         },
-                //         token: findUser.fcm_token,
-                //     };
-                //     await admin.messaging().send(message).catch((error: Error) =>
-                //         console.error("Failed to send push notification:", error)
-                //     );
-                // }
-
-                //remove password from the user object
-                findUser.password = undefined;
-
-                const account = {
-                    id: findUser._id,
-                    name: findUser.name,
-                    email: findUser.email,
-                    role: findUser.role,
-                };
-
-                const accessToken: string | undefined = GenerateAccessToken(account);
-                const refreshToken: string | undefined = GenerateRefreshToken(account);
-
-                return AppResponse(
-                    res,
-                    "User verification successful.",
-                    200,
-                    {
-                        accessToken: accessToken,
-                        refreshToken: refreshToken,
-                        account: findUser,
-                    }
-                );
-            }
+        // Verify current password
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return next(new AppError("Current password is incorrect", 401));
         }
 
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
 
+        // Update password
+        user.password = hashedPassword;
+        await user.save();
 
-        return next(new AppError("This is an invalid OTP", 400));
+        return AppResponse(res, "Password changed successfully", 200, null);
     }
 );
+
+export const verifyEmailHandler = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { otp, email } = req.body as { otp: string; email: string };
+
+            const findUser: any = await User.findOne({ email })
+                .select("+password");
+
+            if (!findUser) {
+                return next(new AppError("User not found", 404));
+            }
+
+            const userDate = findUser.otpExpires;
+            const dateToCheck = userDate ? new Date(userDate) : new Date(0);
+            const now = new Date();
+
+            if (findUser.otp === otp) {
+                if (findUser.isEmailVerified) {
+                    return next(
+                        new AppError("This user has already verified their account.", 400)
+                    );
+                }
+
+                // Check if current time is past the expiration time
+                if (now > dateToCheck) {
+                    return next(
+                        new AppError("This OTP has expired. Please request a new one.", 400)
+                    );
+                } else {
+                    findUser.isEmailVerified = true;
+                    findUser.otp = "";
+                    findUser.otpExpires = null;
+                    await findUser.save();
+
+                    // Send welcome email
+                    await sendMail({
+                        email: findUser.email,
+                        subject: "Welcome to connectED!",
+                        templateName: "welcome",
+                        context: { name: findUser.name || "User" }, // Use name if available
+                    }).catch((error: Error) =>
+                        console.error("Failed to send welcome email:", error)
+                    );
+
+                    // Send push notification
+                    // if (findUser.fcm_token) {
+                    //     const message: admin.messaging.Message = {
+                    //         notification: {
+                    //             title: "Welcome to Arennah!",
+                    //             body: "Thank you for joining us!",
+                    //         },
+                    //         token: findUser.fcm_token,
+                    //     };
+                    //     await admin.messaging().send(message).catch((error: Error) =>
+                    //         console.error("Failed to send push notification:", error)
+                    //     );
+                    // }
+
+                    //remove password from the user object
+                    findUser.password = undefined;
+
+                    const account = {
+                        id: findUser._id,
+                        username: findUser.username,
+                        name: findUser.name,
+                        email: findUser.email,
+                        role: findUser.role,
+                    };
+
+                    const accessToken: string | undefined = GenerateAccessToken(account);
+                    const refreshToken: string | undefined = GenerateRefreshToken(account);
+
+                    return AppResponse(
+                        res,
+                        "User verification successful.",
+                        200,
+                        {
+                            accessToken: accessToken,
+                            refreshToken: refreshToken,
+                            account: findUser,
+                        }
+                    );
+                }
+            }
+
+            // Add this line to handle invalid OTP
+            return next(new AppError("Invalid OTP code", 400));
+
+        } catch (error) {
+            console.error("Error during email verification:", error);
+            return next(new AppError("Email verification failed", 500));
+        }
+    }
+);
+
 
 
 

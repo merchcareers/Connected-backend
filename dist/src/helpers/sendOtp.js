@@ -1,11 +1,10 @@
+"use strict";
 // import {
 //   TERMII_API_KEY,
 //   Termii_BASE_URL,
 //   TERMII_SENDER_ID,
 // } from "../serviceUrl";
-
 // import axios from "axios";
-
 // const sendOtp = async (phoneNumber: string): Promise<any> => {
 //   if (!Termii_BASE_URL || !TERMII_API_KEY)
 //     return { status: "fail", message: "Failed to send OTP" };
@@ -24,7 +23,6 @@
 //       pin_type: "NUMERIC",
 //     });
 //     console.log(response);
-
 //     return response.data;
 //   } catch (error: any) {
 //     if (axios.isAxiosError(error) && error.response) {
@@ -36,5 +34,4 @@
 //     throw new Error("Failed to send OTP");
 //   }
 // };
-
 // export default sendOtp;

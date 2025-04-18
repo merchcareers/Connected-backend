@@ -1,7 +1,7 @@
+"use strict";
 // import { Request, Response, NextFunction } from "express";
 // import { AnyZodObject, ZodError } from "zod";
 // import AppError from "../errors/AppError";
-
 // const storeValidate =
 //     (schema: AnyZodObject) =>
 //         async (req: Request, res: Response, next: NextFunction) => {
@@ -20,5 +20,4 @@
 //                 return next(error);
 //             }
 //         };
-
 // export default storeValidate;

@@ -1,10 +1,14 @@
 import mongoose, { Schema, Document } from "mongoose";
+import bcrypt from "bcryptjs";
 import { IUser, IStudent, IMentor, IRecruiter, IFreelancer } from "../interfaces/IUser";
 
 // Base User Schema
 const UserSchema: Schema<IUser> = new Schema(
     {
         name: { type: String, required: true },
+        username: { type: String, required: true, unique: true },
+        country: { type: String },
+        phone: { type: String },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true, select: false },
         role: {
@@ -17,6 +21,8 @@ const UserSchema: Schema<IUser> = new Schema(
         avatar: { type: String },
         portfolio: { type: String },
         isEmailVerified: { type: Boolean, default: false },
+        otp: { type: String }, // OTP for email verification
+        otpExpires: { type: Date },
         isActive: { type: Boolean, default: true },
         lastLogin: { type: Date },
         createdAt: { type: Date, default: Date.now },

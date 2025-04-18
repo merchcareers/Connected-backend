@@ -12,7 +12,10 @@ declare global {
 export interface IUser extends Document {
     _id: mongoose.Schema.Types.ObjectId;
     name: string;
+    username: string; // Unique username
     email: string;
+    country?: string; // Optional field
+    phone?: string; // Optional field
     password: string;
     role: "student" | "mentor" | "recruiter" | "freelancer";
     bio?: string; // Short description (200 chars max)
@@ -20,6 +23,8 @@ export interface IUser extends Document {
     avatar?: string;
     portfolio?: string; // Optional URL (e.g., GitHub, Dribbble)
     isEmailVerified: boolean;
+    otp: string; 
+    otpExpires: Date | null;
     isActive: boolean;
     lastLogin?: Date;
     createdAt?: Date;

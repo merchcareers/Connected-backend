@@ -4,6 +4,14 @@ export const registerSchema = z.object({
   name: z
     .string({ required_error: "Name is required" })
     .min(3, "Name must be atleast 3 characters long"),
+  username: z
+    .string({ required_error: "Username is required" })
+    .min(3, "Username must be atleast 3 characters long")
+    .max(20, "Username must not exceed 20 characters")
+    .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores")
+    .refine((val) => !val.startsWith("_"), {
+      message: "Username cannot start with an underscore",
+    }),
   email: z
     .string({ required_error: "Email is required" })
     .email("Invalid email address"),
@@ -23,9 +31,9 @@ export const registerSchema = z.object({
       message: "Password must contain at least one special character.",
     }),
   role: z
-    .enum(["buyer", "seller"], { required_error: "Role is required" })
-    .refine((value) => ["buyer", "seller"].includes(value), {
-      message: "Role must be either 'buyer or seller'.",
+    .enum(["student", "mentor", "recruiter", "freelancer"], { required_error: "Role is required" })
+    .refine((value) => ["student", "mentor", "recruiter", "freelancer"].includes(value), {
+      message: "Account type must be either 'student', 'freelancer', 'mentor', or 'recruiter'.",
     }),
 });
 export const verifyEmailOtpSchema = z.object({
@@ -38,13 +46,21 @@ export const verifyEmailOtpSchema = z.object({
     .email("Invalid email address"),
 });
 
+export const VerifyOtpSchema = z.object({
+  body: z.object({
+    email: z.string().email("Invalid email address"),
+    otp: z.string().min(6, "OTP must be 6 characters").max(6, "OTP must be 6 characters"),
+  }),
+});
+
+
 export const loginSchema = z.object({
-  phone_or_email: z
-    .string({ required_error: "Email or phone number is required" })
+  phone_email_or_username: z
+    .string({ required_error: "Email, Username or phone number is required" })
     .refine(
       (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{13}$/.test(val),
       {
-        message: "Must be a valid email or an 11-digit phone number",
+        message: "Must be a valid username, email or an 11-digit phone number",
       }
     ),
 
@@ -93,30 +109,34 @@ export const forgotPasswordSchema = z.object({
     .email("Invalid email address"),
 });
 
+export const resetPasswordSchema = z.object({
 
-export const resetPasswordSchema = z
-  .object({
-    password: z
-      .string({ required_error: "Password is required" })
-      .min(8, "Password must be at least 8 characters long")
-      .refine((val) => /[a-z]/.test(val), {
-        message: "Password must contain at least one lowercase letter",
-      })
-      .refine((val) => /[A-Z]/.test(val), {
-        message: "Password must contain at least one uppercase letter",
-      })
-      .refine((val) => /\d/.test(val), {
-        message: "Password must contain at least one digit",
-      })
-      .refine((val) => /[!@#$%^&*(),.?":{}|<>]/.test(val), {
-        message: "Password must contain at least one special character.",
-      }),
+  email: z
+    .string({ required_error: "Email is required" })
+    .email("Invalid email address"),
+  otp: z
+    .string({ required_error: "OTP is required" })
+    .min(6, "OTP must not be less than six characters"),
+  newPassword: z
+    .string({ required_error: "Password is required" })
+    .min(8, "Password must be at least 8 characters long")
+    .refine((val) => /[a-z]/.test(val), {
+      message: "Password must contain at least one lowercase letter",
+    })
+    .refine((val) => /[A-Z]/.test(val), {
+      message: "Password must contain at least one uppercase letter",
+    })
+    .refine((val) => /\d/.test(val), {
+      message: "Password must contain at least one digit",
+    })
 
-    confirm_password: z
-      .string({ required_error: "Confirm password is required" })
-      .min(8, "Confirm password must be at least 8 characters long"),
-  })
-  .refine((data) => data.password === data.confirm_password, {
-    path: ["confirm_password"],  
-    message: "Passwords do not match",
-  });
+});
+
+export const changePasswordSchema = z.object({
+
+  currentPassword: z
+    .string().min(6, "Current password must be at least 6 characters"),
+  newPassword: z
+    .string().min(6, "New password must be at least 6 characters"),
+    
+});
