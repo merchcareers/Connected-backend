@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcryptjs";
-import { IUser, IStudent, IMentor, IRecruiter, IFreelancer } from "../interfaces/IUser";
+import { IUser, IStudent, IMentor, IRecruiter} from "../interfaces/IUser";
 
 // Base User Schema
 const UserSchema: Schema<IUser> = new Schema(
@@ -71,21 +71,11 @@ const RecruiterSchema: Schema<IRecruiter> = new Schema({
     postedJobs: [{ type: Schema.Types.ObjectId, ref: "Job" }],
 });
 
-// Freelancer Schema
-const FreelancerSchema: Schema<IFreelancer> = new Schema({
-    experienceLevel: {
-        type: String,
-        enum: ["beginner", "intermediate", "advanced"],
-        required: true,
-    },
-    appliedJobs: [{ type: Schema.Types.ObjectId, ref: "Job" }],
-});
 
 // Models
 const User = mongoose.model<IUser>("User", UserSchema);
 const Student = User.discriminator<IStudent>("student", StudentSchema);
 const Mentor = User.discriminator<IMentor>("mentor", MentorSchema);
 const Recruiter = User.discriminator<IRecruiter>("recruiter", RecruiterSchema);
-const Freelancer = User.discriminator<IFreelancer>("freelancer", FreelancerSchema);
 
-export { User, Student, Mentor, Recruiter, Freelancer };
+export { User, Student, Mentor, Recruiter};

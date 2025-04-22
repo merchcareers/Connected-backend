@@ -261,3 +261,16 @@
 2025-04-16T13:28:44.425Z [[32minfo[39m]: Server running on port 3100
 2025-04-16T13:29:06.383Z [[32minfo[39m]: POST - /v1/api/auth/login
 2025-04-16T13:46:39.019Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-04-21T18:05:08.728Z [[31merror[39m]: Error connecting to DB
+2025-04-21T18:05:08.736Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T09:32:28.334Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T09:32:28.339Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T10:26:55.205Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-22T10:27:54.322Z [[32minfo[39m]: POST - /v1/api/auth/resend-verification
+2025-04-22T10:29:01.589Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-22T10:32:08.625Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T10:32:08.633Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T10:32:25.669Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T10:32:25.676Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T10:32:51.122Z [[32minfo[39m]: POST - /v1/api/auth/resend-verification
+2025-04-22T10:33:40.241Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email

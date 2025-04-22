@@ -58,9 +58,3 @@ export interface IRecruiter extends IUser {
     companyName?: string;
     postedJobs: mongoose.Schema.Types.ObjectId[]; // Reference to Job model
 }
-
-// Freelancer-specific fields
-export interface IFreelancer extends IUser {
-    experienceLevel: "beginner" | "intermediate" | "advanced";
-    appliedJobs: mongoose.Schema.Types.ObjectId[]; // Reference to Job model
-}

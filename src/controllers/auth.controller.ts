@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import catchAsync from "../errors/catchAsync";
 import AppResponse from "../helpers/AppResponse";
-import { Student, Mentor, Recruiter, Freelancer, User } from "../models/user.model"
+import { Student, Mentor, Recruiter, User } from "../models/user.model"
 import AppError from "../errors/AppError";
 import { IUser } from "../interfaces/IUser";
 import sendMail from "../config/nodemailer.config";
@@ -38,11 +38,8 @@ export const registerHandler = catchAsync(
                 case "recruiter":
                     user = new Recruiter({ name, email, username, role, password: hashedPassword });
                     break;
-                case "freelancer":
-                    user = new Freelancer({ name, email, username,  role, password: hashedPassword, experienceLevel: "beginner" });
-                    break;
                 default:
-                    return next(new AppError("Invalid role. Must be student, mentor, recruiter, or freelancer", 400));
+                    return next(new AppError("Invalid role. Must be student, mentor, or recruiter", 400));
             }
 
             const firstName = name.split(" ")[0];
@@ -98,6 +95,8 @@ export const resendVerificationEmail = catchAsync(
 
         const firstName = user.name.split(" ")[0];
         const otpCode = generateRandomAlphanumeric();
+        user.otp = otpCode;
+        user.otpExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
         const mailOptions = {
             email: user.email,
@@ -205,93 +204,6 @@ export const loginHandler = catchAsync(
     }
 );
 
-// export const loginHandler = catchAsync(
-//     async (req: Request, res: Response, next: NextFunction) => {
-//         const isMobile = req.headers.mobilereqsender;
-
-//         const { phone_email_or_username, password } = req.body;
-//         // const user = await User.findOne({ email });
-//         const user: any = await User.findOne({
-//             $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }], 
-//         })
-//             .select("+password")
-//             .populate("store");
-
-//         if (!user) return next(new AppError("User not found", 404));
-
-//         const isMatch = await bcrypt.compare(password, user.password);
-//         if (!isMatch) return next(new AppError("Invalid credentials", 401));
-//         if (!user.isEmailVerified)
-//             return next(new AppError("Please verify your email before log in.", 401));
-//         // if (user.is_two_factor_enabled) {
-//         //     //We should send a token here to track that okay, this person has had their password stuff done
-//         //     const two_fa_track = {
-//         //         id: user._id,
-//         //         createdAt: Date.now(),
-//         //     };
-//         //     const two_fa_token = GenerateTrackingToken(two_fa_track);
-//         //     return AppResponse(
-//         //         res,
-//         //         "Please check your Authenticator app for your token.",
-//         //         200,
-//         //         two_fa_token
-//         //     );
-//         // }
-//         const account = {
-//             id: user._id,
-//             name: user.name,
-//             username: user.username,
-//             email: user.email,
-//             // phone_number: user.phone_number,
-//             role: user.role,
-//             // profile_image:user.imageUrl,
-//         };
-
-//         // remove password from the user object
-//         user.password = undefined;
-
-//         await User.findByIdAndUpdate(user._id, { lastLogin: new Date() });
-//         const accessToken: string | undefined = GenerateAccessToken(account);
-//         const refreshToken: string | undefined = GenerateRefreshToken(account);
-//         //If it is mobile we send token in response
-
-//         if (isMobile)
-//             return AppResponse(res, "Login successful", 200, {
-//                 accessToken: accessToken,
-//                 refreshToken: refreshToken,
-//                 account: user,
-//             });
-
-//         res.cookie("e_access_token", accessToken, {
-//             httpOnly: true,
-//             secure: process.env.NODE_ENV === "production",
-//             sameSite: "none",
-//             partitioned: true,
-//             priority: "high",
-//             signed: true,
-//             maxAge: 60 * 24 * 60 * 60 * 1000,
-//             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-//         });
-
-//         res.cookie("e_refresh_token", refreshToken, {
-//             httpOnly: true,
-//             secure: process.env.NODE_ENV === "production",
-//             sameSite: "none",
-//             partitioned: true,
-//             signed: true,
-//             priority: "high",
-//             maxAge: 60 * 24 * 60 * 60 * 1000,
-//             expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
-//         });
-
-
-//         return AppResponse(res, "Login successful", 200, {
-//             accessToken: accessToken,
-//             refreshToken: refreshToken,
-//             account: user,
-//         });
-//     }
-// );
 
 export const forgotPasswordHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
