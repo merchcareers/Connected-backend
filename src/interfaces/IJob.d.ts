@@ -6,8 +6,12 @@ export interface IJob extends Document {
     description: string; // 500 chars max
     skills: string[];
     type: "full-time" | "freelance" | "internship";
+    requirements: string[]; // Array of requirements
     location: "remote" | "onsite";
     salaryRange?: string;
+    status: "open" | "closed";
+    companyName: string;
+    applicants: mongoose.Schema.Types.ObjectId[]; // Ref to Users
     postedBy: mongoose.Schema.Types.ObjectId; // Ref to Recruiter
     createdAt: Date;
 }

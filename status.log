@@ -274,3 +274,27 @@
 2025-04-22T10:32:25.676Z [[32minfo[39m]: Server running on port 3100
 2025-04-22T10:32:51.122Z [[32minfo[39m]: POST - /v1/api/auth/resend-verification
 2025-04-22T10:33:40.241Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-22T17:16:57.597Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:16:57.622Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:39:54.965Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:39:54.984Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:41:41.789Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:41:41.907Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:41:59.181Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:41:59.190Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:45:32.410Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:45:32.417Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:47:16.944Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:47:16.952Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:47:42.486Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:47:42.501Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:48:29.143Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:48:29.151Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:49:00.866Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:49:00.874Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:50:01.420Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:50:01.425Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T17:52:20.072Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T17:52:20.080Z [[32minfo[39m]: Server running on port 3100
+2025-04-22T18:15:40.092Z [[32minfo[39m]: Successfully connected to DB
+2025-04-22T18:15:40.114Z [[32minfo[39m]: Server running on port 3100
