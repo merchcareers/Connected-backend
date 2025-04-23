@@ -298,3 +298,11 @@
 2025-04-22T17:52:20.080Z [[32minfo[39m]: Server running on port 3100
 2025-04-22T18:15:40.092Z [[32minfo[39m]: Successfully connected to DB
 2025-04-22T18:15:40.114Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T12:47:48.610Z [[31merror[39m]: Error connecting to DB
+2025-04-23T12:47:48.652Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T15:03:47.520Z [[32minfo[39m]: Successfully connected to DB
+2025-04-23T15:03:47.635Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T17:26:30.507Z [[32minfo[39m]: Successfully connected to DB
+2025-04-23T17:26:30.516Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T17:28:00.704Z [[32minfo[39m]: [CRON] Keep-alive triggered at 2025-04-23T17:28:00.703Z
+2025-04-23T17:28:01.701Z [[32minfo[39m]: [KEEP-ALIVE] Pinged https://connected-backend-14v7.onrender.com — Status: 200

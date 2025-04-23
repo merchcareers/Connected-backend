@@ -6,8 +6,10 @@ import mongoSanitize from "express-mongo-sanitize";
 import helmet from "helmet";
 import compression from "compression";
 import http from "http";
+import https from "https";
 import path from "path";
 import multer from 'multer';
+import cron from 'node-cron';
 
 import ConnectDB from "./src/config/db.config";
 import AppError from "./src/errors/AppError";
@@ -107,4 +109,23 @@ process.on("SIGTERM", () => {
       process.exit(0);
     });
   });
+});
+
+
+function keepAlive(url: string) {
+  https
+    .get(url, (res) => {
+      logger.info(`[KEEP-ALIVE] Pinged ${url} — Status: ${res.statusCode}`);
+      res.resume(); // prevent memory leak
+    })
+    .on("error", (error) => {
+      logger.error(`[KEEP-ALIVE ERROR] ${error.message}`);
+    });
+}
+
+// Cron job — runs every 14 minutes
+cron.schedule("*/14 * * * *", () => {
+  const timestamp = new Date().toISOString();
+  logger.info(`[CRON] Keep-alive triggered at ${timestamp}`);
+  keepAlive("https://connected-backend-14v7.onrender.com");
 });
