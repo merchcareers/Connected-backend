@@ -124,7 +124,7 @@ function keepAlive(url: string) {
 }
 
 // Cron job — runs every 14 minutes
-cron.schedule("*/14 * * * *", () => {
+cron.schedule("*/50 * * * *", () => {
   const timestamp = new Date().toISOString();
   logger.info(`[CRON] Keep-alive triggered at ${timestamp}`);
   keepAlive("https://connected-backend-14v7.onrender.com");
