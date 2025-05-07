@@ -306,3 +306,214 @@
 2025-04-23T17:26:30.516Z [[32minfo[39m]: Server running on port 3100
 2025-04-23T17:28:00.704Z [[32minfo[39m]: [CRON] Keep-alive triggered at 2025-04-23T17:28:00.703Z
 2025-04-23T17:28:01.701Z [[32minfo[39m]: [KEEP-ALIVE] Pinged https://connected-backend-14v7.onrender.com — Status: 200
+2025-04-23T17:31:36.240Z [[32minfo[39m]: Successfully connected to DB
+2025-04-23T17:31:36.253Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T17:50:00.372Z [[32minfo[39m]: [CRON] Keep-alive triggered at 2025-04-23T17:50:00.324Z
+2025-04-23T17:50:01.489Z [[32minfo[39m]: [KEEP-ALIVE] Pinged https://connected-backend-14v7.onrender.com — Status: 200
+2025-04-23T18:00:00.995Z [[32minfo[39m]: [CRON] Keep-alive triggered at 2025-04-23T18:00:00.993Z
+2025-04-23T18:00:01.020Z [[31merror[39m]: [KEEP-ALIVE ERROR] getaddrinfo ENOTFOUND connected-backend-14v7.onrender.com
+2025-04-23T18:31:37.422Z [[31merror[39m]: Error connecting to DB
+2025-04-23T18:31:37.437Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T18:46:26.879Z [[32minfo[39m]: Successfully connected to DB
+2025-04-23T18:46:26.887Z [[32minfo[39m]: Server running on port 3100
+2025-04-23T18:55:05.621Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-30T14:47:51.405Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T14:47:51.425Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T14:50:00.526Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T14:50:16.435Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T14:55:43.107Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T14:59:04.172Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:26:54.381Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:28:48.524Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:48:43.071Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T15:48:43.079Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T15:49:27.499Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T15:49:27.508Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T15:50:02.643Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:54:25.492Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:56:00.355Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:58:52.435Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-30T15:59:30.315Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-30T15:59:41.426Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T15:59:55.043Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:00:20.374Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:27:22.035Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:28:19.813Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T16:28:19.830Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T16:29:50.521Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:47:11.171Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:48:12.630Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T16:48:12.640Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T16:48:26.660Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:51:38.285Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:51:53.788Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:52:10.381Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:53:07.466Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T16:53:07.472Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T16:53:16.149Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:57:42.120Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T16:57:56.124Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T17:25:31.453Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T17:25:44.848Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T17:26:17.080Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T17:26:24.880Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T17:29:31.073Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T17:29:31.087Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T18:41:44.906Z [[32minfo[39m]: PUT - /v1/api/logout
+2025-04-30T18:41:45.025Z [[33mwarn[39m]: Can not find /v1/api/logout with PUT on this server
+2025-04-30T18:41:45.213Z [[32minfo[39m]: PUT - /v1/api/logout
+2025-04-30T18:41:45.214Z [[33mwarn[39m]: Can not find /v1/api/logout with PUT on this server
+2025-04-30T18:41:54.531Z [[32minfo[39m]: POST - /v1/api/login
+2025-04-30T18:41:54.534Z [[33mwarn[39m]: Can not find /v1/api/login with POST on this server
+2025-04-30T18:43:02.577Z [[32minfo[39m]: POST - /v1/api/login
+2025-04-30T18:43:02.582Z [[33mwarn[39m]: Can not find /v1/api/login with POST on this server
+2025-04-30T18:43:06.103Z [[32minfo[39m]: POST - /v1/api/login
+2025-04-30T18:43:06.104Z [[33mwarn[39m]: Can not find /v1/api/login with POST on this server
+2025-04-30T18:44:37.871Z [[32minfo[39m]: PUT - /v1/api/logout
+2025-04-30T18:44:37.872Z [[33mwarn[39m]: Can not find /v1/api/logout with PUT on this server
+2025-04-30T18:45:02.266Z [[32minfo[39m]: POST - /v1/api/login
+2025-04-30T18:45:02.266Z [[33mwarn[39m]: Can not find /v1/api/login with POST on this server
+2025-04-30T18:45:04.009Z [[32minfo[39m]: POST - /v1/api/login
+2025-04-30T18:45:04.009Z [[33mwarn[39m]: Can not find /v1/api/login with POST on this server
+2025-04-30T18:47:14.687Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T18:48:06.627Z [[32minfo[39m]: PUT - /v1/apiauth/logout
+2025-04-30T18:48:06.633Z [[33mwarn[39m]: Can not find /v1/apiauth/logout with PUT on this server
+2025-04-30T18:48:06.674Z [[32minfo[39m]: PUT - /v1/apiauth/logout
+2025-04-30T18:48:06.675Z [[33mwarn[39m]: Can not find /v1/apiauth/logout with PUT on this server
+2025-04-30T18:48:11.273Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T18:48:11.281Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T18:48:33.488Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T18:57:26.795Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-30T18:58:31.559Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-30T19:31:20.442Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-30T19:37:04.308Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-30T19:41:14.763Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-30T19:41:44.261Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-04-30T19:42:43.003Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-30T19:43:24.525Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-04-30T19:43:32.438Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:43:32.530Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:43:32.535Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:43:45.524Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T19:44:12.060Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:44:12.062Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:44:12.647Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:44:14.883Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T19:45:04.370Z [[32minfo[39m]: Successfully connected to DB
+2025-04-30T19:45:04.379Z [[32minfo[39m]: Server running on port 3100
+2025-04-30T19:45:10.949Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:45:10.965Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:45:11.249Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:45:31.046Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T19:51:11.028Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:51:11.129Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:51:11.623Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:51:20.648Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:51:20.660Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:51:32.582Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T19:52:12.394Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:52:12.399Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:52:12.613Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:52:21.659Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-04-30T19:53:31.296Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:53:31.304Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:53:31.401Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-04-30T19:54:26.961Z [[32minfo[39m]: PUT - /v1/api/auth/logout
+2025-05-01T11:57:19.330Z [[32minfo[39m]: Successfully connected to DB
+2025-05-01T11:57:19.352Z [[32minfo[39m]: Server running on port 3100
+2025-05-01T12:16:52.355Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-01T13:30:13.786Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-01T13:31:04.233Z [[32minfo[39m]: Successfully connected to DB
+2025-05-01T13:31:04.241Z [[32minfo[39m]: Server running on port 3100
+2025-05-01T13:31:21.656Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-01T13:31:40.081Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-01T13:33:14.915Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-01T13:34:37.748Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-01T13:38:28.748Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-03T23:03:54.182Z [[32minfo[39m]: Successfully connected to DB
+2025-05-03T23:03:54.195Z [[32minfo[39m]: Server running on port 3100
+2025-05-03T23:04:08.001Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:04:41.576Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:05:17.318Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:07:20.985Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-03T23:07:48.666Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-05-03T23:08:19.629Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:39:43.919Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:45:47.268Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:46:21.512Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:49:45.493Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:49:48.794Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:49:59.183Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:50:12.920Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-03T23:59:00.402Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:01:39.253Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:01:51.198Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:01:57.901Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:03:18.582Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:03:59.766Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:15:47.426Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:24:49.336Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:34:21.598Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:39:10.070Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:39:20.565Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T00:40:08.024Z [[32minfo[39m]: POST - /v1/api/auth/request-password-reset
+2025-05-04T00:40:08.035Z [[33mwarn[39m]: Can not find /v1/api/auth/request-password-reset with POST on this server
+2025-05-04T07:13:53.420Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T07:22:47.527Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T07:23:07.116Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T07:23:53.355Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T07:26:51.383Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T07:34:49.985Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T07:36:02.706Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T17:42:12.287Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T18:04:36.605Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T18:04:46.623Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-04T18:05:04.568Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T18:09:03.584Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T18:09:12.987Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-04T18:09:17.120Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T04:23:47.644Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T04:25:24.898Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T04:25:42.625Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T12:28:07.408Z [[32minfo[39m]: Successfully connected to DB
+2025-05-05T12:28:07.434Z [[32minfo[39m]: Server running on port 3100
+2025-05-05T12:28:11.334Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-05T12:33:46.204Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-05-05T12:33:56.318Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T12:46:48.878Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T12:52:08.367Z [[32minfo[39m]: Successfully connected to DB
+2025-05-05T12:52:08.379Z [[32minfo[39m]: Server running on port 3100
+2025-05-05T13:55:03.143Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T14:04:06.051Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T14:05:43.371Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-05T14:06:51.915Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-05-05T14:07:00.652Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T14:07:44.386Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T14:08:15.939Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T14:08:58.177Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-05T14:09:49.041Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T14:18:04.712Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T14:28:03.950Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T14:30:52.540Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T14:32:14.562Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T14:34:31.850Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T15:03:32.036Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T15:12:04.365Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T15:12:59.667Z [[32minfo[39m]: POST - /v1/api/auth/reset-password
+2025-05-05T15:12:59.710Z [[33mwarn[39m]: Can not find /v1/api/auth/reset-password with POST on this server
+2025-05-05T15:23:58.061Z [[32minfo[39m]: POST - /v1/api/auth/forgot-password
+2025-05-05T15:24:47.260Z [[32minfo[39m]: PATCH - /v1/api/auth/reset-password
+2025-05-05T15:25:07.301Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T08:55:07.282Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T08:55:07.289Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T08:57:41.850Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-05-07T08:58:29.979Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-05-07T08:58:58.023Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T09:10:24.858Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T09:10:25.098Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T09:10:43.550Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T09:16:32.741Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T09:31:51.895Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T09:31:51.950Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T09:32:52.139Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T09:32:52.150Z [[32minfo[39m]: Server running on port 3100

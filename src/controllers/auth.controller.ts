@@ -13,6 +13,8 @@ import GenerateRandomId, { generateRandomAlphanumeric } from "../helpers/Generat
 import { logger } from "handlebars";
 
 // Register Handler
+
+
 export const registerHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -84,6 +86,8 @@ export const registerHandler = catchAsync(
     }
 );
 
+
+
 // Resend Verification Email
 export const resendVerificationEmail = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -130,20 +134,29 @@ export const resendVerificationEmail = catchAsync(
 
 // Login Handler
 
+
+
 export const loginHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const isMobile = req.headers.mobilereqsender;
-        const { phone_email_or_username, password } = req.body;
-        console.log("Login Request:", { phone_email_or_username, password });
+
+        // Accept multiple possible parameter names
+        const identifier = req.body.phone_email_or_username || req.body.email || req.body.username || req.body.phone;
+        const { password } = req.body;
+
+        if (!identifier) {
+            return next(new AppError("Email, Username or phone number is required", 400));
+        }
+
+        console.log("Login Request:", { identifier, password });
 
         const user: any = await User.findOne({
-            $or: [{ email: phone_email_or_username }, { phone_number: phone_email_or_username }, { username: phone_email_or_username }],
+            $or: [{ email: identifier }, { phone_number: identifier }, { username: identifier }],
         })
             .select("+password")
-            .populate("store");
 
         console.log("User Found:", user ? user.email : "No user");
-        if (!user) return next(new AppError("User not found", 404));
+        if (!user) return next(new AppError("Invalid Email or Incorrect Password", 404));
 
         const isMatch = await bcrypt.compare(password, user.password);
         console.log("Password Match:", isMatch);

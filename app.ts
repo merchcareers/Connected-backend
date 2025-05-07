@@ -112,20 +112,20 @@ process.on("SIGTERM", () => {
 });
 
 
-function keepAlive(url: string) {
-  https
-    .get(url, (res) => {
-      logger.info(`[KEEP-ALIVE] Pinged ${url} — Status: ${res.statusCode}`);
-      res.resume(); // prevent memory leak
-    })
-    .on("error", (error) => {
-      logger.error(`[KEEP-ALIVE ERROR] ${error.message}`);
-    });
-}
+// function keepAlive(url: string) {
+//   https
+//     .get(url, (res) => {
+//       logger.info(`[KEEP-ALIVE] Pinged ${url} — Status: ${res.statusCode}`);
+//       res.resume(); // prevent memory leak
+//     })
+//     .on("error", (error) => {
+//       logger.error(`[KEEP-ALIVE ERROR] ${error.message}`);
+//     });
+// }
 
-// Cron job — runs every 14 minutes
-cron.schedule("*/50 * * * *", () => {
-  const timestamp = new Date().toISOString();
-  logger.info(`[CRON] Keep-alive triggered at ${timestamp}`);
-  keepAlive("https://connected-backend-14v7.onrender.com");
-});
+// // Cron job — runs every 14 minutes
+// cron.schedule("*/50 * * * *", () => {
+//   const timestamp = new Date().toISOString();
+//   logger.info(`[CRON] Keep-alive triggered at ${timestamp}`);
+//   keepAlive("https://connected-backend-14v7.onrender.com");
+// });
