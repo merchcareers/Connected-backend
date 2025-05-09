@@ -55,14 +55,11 @@ export const VerifyOtpSchema = z.object({
 
 
 export const loginSchema = z.object({
-  phone_email_or_username: z
-    .string({ required_error: "Email, Username or phone number is required" })
-    .refine(
-      (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || /^\d{13}$/.test(val),
-      {
-        message: "Must be a valid username, email or an 11-digit phone number",
-      }
-    ),
+  username_or_email: z
+    .string({ required_error: "Email or Username is required" })
+    .min(3, "Username or Email must be at least 3 characters long")
+    .max(20, "Username or Email must not exceed 20 characters")
+    .regex(/^[a-zA-Z0-9_@.]+$/, "Username or Email can only contain letters, numbers, and underscores"),
 
   password: z
     .string({ required_error: "Password is required" })

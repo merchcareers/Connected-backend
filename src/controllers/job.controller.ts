@@ -48,7 +48,4 @@ export const applyJobHandler = catchAsync(async(req: Request, res: Response, nex
     });
     await activity.save();
 
-
-
-
 })

@@ -517,3 +517,59 @@
 2025-05-07T09:31:51.950Z [[32minfo[39m]: Server running on port 3100
 2025-05-07T09:32:52.139Z [[32minfo[39m]: Successfully connected to DB
 2025-05-07T09:32:52.150Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T17:35:11.653Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T17:35:11.661Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T17:40:09.584Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T17:40:09.591Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:36:23.224Z [[31merror[39m]: Error connecting to DB
+2025-05-07T18:36:23.233Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:38:18.687Z [[31merror[39m]: Error connecting to DB
+2025-05-07T18:38:18.695Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:39:09.480Z [[31merror[39m]: Error connecting to DB
+2025-05-07T18:39:09.492Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:41:20.719Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T18:42:03.316Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T18:42:03.327Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:42:16.895Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T18:43:53.946Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T18:44:32.547Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T18:48:33.805Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T18:48:33.812Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:50:38.418Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T18:50:38.426Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:50:50.418Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T18:52:03.455Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T18:52:03.461Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:52:08.233Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T18:57:09.836Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T18:57:09.842Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T18:57:15.548Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T19:00:08.573Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T23:35:25.703Z [[32minfo[39m]: Successfully connected to DB
+2025-05-07T23:35:25.709Z [[32minfo[39m]: Server running on port 3100
+2025-05-07T23:35:33.994Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T23:42:23.710Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T23:42:52.234Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-07T23:45:43.792Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:27:02.392Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:27:19.954Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:27:29.992Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:27:51.234Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:28:16.105Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:28:42.982Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:29:14.142Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:29:39.623Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:58:09.061Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T04:58:20.939Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T05:07:24.640Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T05:08:57.244Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T13:21:53.801Z [[32minfo[39m]: Successfully connected to DB
+2025-05-08T13:21:54.327Z [[32minfo[39m]: Server running on port 3100
+2025-05-08T13:22:35.146Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T13:23:51.105Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T13:24:12.153Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-08T13:24:24.405Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-09T16:17:18.777Z [[32minfo[39m]: Successfully connected to DB
+2025-05-09T16:17:18.786Z [[32minfo[39m]: Server running on port 3100
+2025-05-09T16:17:34.889Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-09T16:17:51.298Z [[32minfo[39m]: POST - /v1/api/auth/login

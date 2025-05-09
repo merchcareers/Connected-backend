@@ -139,23 +139,11 @@ export const resendVerificationEmail = catchAsync(
 export const loginHandler = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const isMobile = req.headers.mobilereqsender;
-
-        // Accept multiple possible parameter names
-        const identifier = req.body.phone_email_or_username || req.body.email || req.body.username || req.body.phone;
-        const { password } = req.body;
-
-        if (!identifier) {
-            return next(new AppError("Email, Username or phone number is required", 400));
-        }
-
-        console.log("Login Request:", { identifier, password });
-
+        const { username_or_email, password } = req.body;
         const user: any = await User.findOne({
-            $or: [{ email: identifier }, { phone_number: identifier }, { username: identifier }],
+            $or: [{ email: username_or_email }, { username: username_or_email }],
         })
-            .select("+password")
-
-        console.log("User Found:", user ? user.email : "No user");
+        .select("+password")
         if (!user) return next(new AppError("Invalid Email or Incorrect Password", 404));
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -289,10 +277,8 @@ export const resetPasswordHandler = catchAsync(
             return next(new AppError("OTP has expired", 400));
         }
 
-        // Hash new password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-        // Update password and clear OTP
         user.password = hashedPassword;
         user.otp = undefined;
         user.otpExpires = undefined;
