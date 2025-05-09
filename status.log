@@ -573,3 +573,12 @@
 2025-05-09T16:17:18.786Z [[32minfo[39m]: Server running on port 3100
 2025-05-09T16:17:34.889Z [[32minfo[39m]: POST - /v1/api/auth/login
 2025-05-09T16:17:51.298Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-09T16:36:31.644Z [[32minfo[39m]: Successfully connected to DB
+2025-05-09T16:36:31.678Z [[32minfo[39m]: Server running on port 3100
+2025-05-09T16:44:59.579Z [[32minfo[39m]: Successfully connected to DB
+2025-05-09T16:45:44.324Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-09T16:47:03.028Z [[32minfo[39m]: Successfully connected to DB
+2025-05-09T16:47:03.028Z [[32minfo[39m]: Successfully connected to DB
+2025-05-09T16:47:03.034Z [[32minfo[39m]: Server running on port 3100
+2025-05-09T16:47:09.421Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-05-09T16:47:51.085Z [[32minfo[39m]: POST - /v1/api/auth/login
