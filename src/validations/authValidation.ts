@@ -58,7 +58,7 @@ export const loginSchema = z.object({
   username_or_email: z
     .string({ required_error: "Email or Username is required" })
     .min(3, "Username or Email must be at least 3 characters long")
-    .max(20, "Username or Email must not exceed 20 characters")
+    .max(70, "Username or Email must not exceed 70 characters")
     .regex(/^[a-zA-Z0-9_@.]+$/, "Username or Email can only contain letters, numbers, and underscores"),
 
   password: z
