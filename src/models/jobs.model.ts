@@ -14,6 +14,15 @@ const JobSchema: Schema<IJob> = new Schema({
     postedBy: { type: Schema.Types.ObjectId, ref: "User", required: true },
     companyName: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
+    interviews: [
+        {
+            studentId: { type: Schema.Types.ObjectId, ref: "User" },
+            startTime: { type: Date, required: true },
+            endTime: { type: Date, required: true },
+            status: { type: String, enum: ["scheduled", "completed", "canceled"], default: "scheduled" },
+        },
+      ],
+
 });
 
 export const Job = mongoose.model<IJob>("Job", JobSchema);

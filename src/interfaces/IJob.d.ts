@@ -12,6 +12,12 @@ export interface IJob extends Document {
     status: "open" | "closed";
     companyName: string;
     applicants: mongoose.Schema.Types.ObjectId[]; // Ref to Users
-    postedBy: mongoose.Schema.Types.ObjectId; // Ref to Recruiter
+    postedBy: mongoose.Schema.Types.ObjectId;
+    interviews:{
+        studentId: mongoose.Schema.Types.ObjectId; 
+        startTime: Date;
+        endTime: Date;
+        status: "scheduled" | "completed" | "canceled";
+    }
     createdAt: Date;
 }

@@ -582,3 +582,23 @@
 2025-05-09T16:47:03.034Z [[32minfo[39m]: Server running on port 3100
 2025-05-09T16:47:09.421Z [[32minfo[39m]: POST - /v1/api/auth/login
 2025-05-09T16:47:51.085Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-06-02T10:29:02.515Z [[32minfo[39m]: Successfully connected to DB
+2025-06-02T10:29:02.525Z [[32minfo[39m]: Server running on port 3100
+2025-06-02T11:39:08.173Z [[32minfo[39m]: Successfully connected to DB
+2025-06-02T11:39:08.182Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T15:42:52.579Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T15:42:52.607Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T15:44:38.881Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T15:44:38.903Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T15:45:37.012Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T15:45:37.019Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T15:51:27.720Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T15:51:27.752Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:09:12.049Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:09:12.056Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:10:50.100Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:10:50.109Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:11:31.134Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:11:31.166Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:14:36.584Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:14:36.590Z [[32minfo[39m]: Server running on port 3100
