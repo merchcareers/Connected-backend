@@ -13,7 +13,7 @@ const UserSchema: Schema<IUser> = new Schema(
         password: { type: String, required: true, select: false },
         role: { type: String, enum: ["student", "mentor", "recruiter"], required: true },
         bio: { type: String, maxlength: 200 },
-        avatar: { type: String },
+        avatar: { type: String, },
         isEmailVerified: { type: Boolean, default: false },
         otp: { type: String },
         otpExpires: { type: Date },
@@ -21,9 +21,8 @@ const UserSchema: Schema<IUser> = new Schema(
         lastLogin: { type: Date },
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now },
-        // New fields
-        followers: [{ type: Schema.Types.ObjectId, ref: "User" }], // Users following this user
-        connections: [{ type: Schema.Types.ObjectId, ref: "User" }], // Accepted connections
+        followers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        connections: [{ type: Schema.Types.ObjectId, ref: "User" }],
         connectionRequests: [
             {
                 userId: { type: Schema.Types.ObjectId, ref: "User" },
@@ -44,6 +43,13 @@ const StudentSchema: Schema<IStudent> = new Schema({
         enum: ["beginner", "intermediate", "advanced"],
         required: true,
     },
+    educationalBackground: [{
+        institution: { type: String, required: true },
+        degree: { type: String, required: true },
+        fieldOfStudy: { type: String, required: true },
+        startDate: { type: Date, required: true },
+        endDate: { type: Date, required: true },
+    }],
     projects: [
         {
             title: { type: String, required: true },
@@ -142,3 +148,4 @@ const Mentor = User.discriminator<IMentor>("mentor", MentorSchema);
 const Recruiter = User.discriminator<IRecruiter>("recruiter", RecruiterSchema);
 
 export { User, Student, Mentor, Recruiter };
+

@@ -1,5 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
+// Extend Express Request for user typing
 declare global {
     namespace Express {
         interface Request {
@@ -8,7 +9,7 @@ declare global {
     }
 }
 
-// Base user interface
+// Base User Interface
 export interface IUser extends Document {
     _id: mongoose.Schema.Types.ObjectId;
     name: string;
@@ -21,35 +22,40 @@ export interface IUser extends Document {
     bio?: string;
     avatar?: string;
     isEmailVerified: boolean;
-    otp: string; 
+    otp: string;
     otpExpires: Date | null;
     isActive: boolean;
     lastLogin?: Date;
-    createdAt?: Date;
-    updatedAt?: Date;
-
-    followers?: mongoose.Schema.Types.ObjectId[]; // Users following this user
-    connections?: mongoose.Schema.Types.ObjectId[]; // Accepted connections
-    connectionRequests?: {
+    createdAt: Date;
+    updatedAt: Date;
+    followers: mongoose.Schema.Types.ObjectId[]; // Users following this user
+    connections: mongoose.Schema.Types.ObjectId[]; // Accepted connections
+    connectionRequests: {
         userId: mongoose.Schema.Types.ObjectId;
         status: "pending" | "accepted" | "declined";
         createdAt: Date;
     }[];
 }
 
-// Student-specific fields
+// Student-Specific Interface
 export interface IStudent extends IUser {
     skills: string[];
     experienceLevel: "beginner" | "intermediate" | "advanced";
-    portfolio?: string; 
+    educationalBackground?: {
+        institution: string;
+        degree: string;
+        fieldOfStudy: string;
+        startDate: Date;
+        endDate?: Date;
+    }[];
+    portfolio?: string;
     projects?: {
         title: string;
         description: string;
         link: string;
         status: "active" | "pending" | "done";
         createdAt: Date;
-
-    };
+    }[];
     schedule: {
         mentorId: mongoose.Schema.Types.ObjectId;
         startTime: Date;
@@ -58,7 +64,7 @@ export interface IStudent extends IUser {
         description?: string;
         status: "scheduled" | "completed" | "cancelled";
         createdAt: Date;
-    }
+    }[];
     mentorshipRequests: {
         mentorId: mongoose.Schema.Types.ObjectId;
         status: "pending" | "accepted" | "declined";
@@ -79,12 +85,12 @@ export interface IStudent extends IUser {
         offersReceived: number;
         mentorshipsCompleted: number;
         mentorshipProgress: number;
-    }
-
+    };
 }
 
+// Mentor-Specific Interface
 export interface IMentor extends IUser {
-    availability: string; 
+    availability: string; // e.g., "Mon-Fri, 9AM-5PM"
     experienceLevel: "intermediate" | "advanced" | "expert";
     mentorships: {
         studentId: mongoose.Schema.Types.ObjectId;
@@ -99,13 +105,11 @@ export interface IMentor extends IUser {
         description?: string;
         status: "scheduled" | "completed" | "cancelled";
         createdAt: Date;
-    },
+    }[];
     eventsCreated: mongoose.Schema.Types.ObjectId[];
-
-
 }
 
-
+// Recruiter-Specific Interface
 export interface IRecruiter extends IUser {
     companyName?: string;
     postedJobs: mongoose.Schema.Types.ObjectId[];
@@ -115,5 +119,6 @@ export interface IRecruiter extends IUser {
         scheduledAt: Date;
         status: "scheduled" | "completed" | "cancelled";
         createdAt: Date;
-    }
+    }[];
 }
+

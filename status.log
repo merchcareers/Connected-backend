@@ -602,3 +602,102 @@
 2025-06-03T16:11:31.166Z [[32minfo[39m]: Server running on port 3100
 2025-06-03T16:14:36.584Z [[32minfo[39m]: Successfully connected to DB
 2025-06-03T16:14:36.590Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:16:19.221Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:16:19.227Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:17:44.815Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:17:44.822Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:18:16.126Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:18:16.147Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:18:48.363Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:18:48.369Z [[32minfo[39m]: Server running on port 3100
+2025-06-03T16:19:46.015Z [[32minfo[39m]: Successfully connected to DB
+2025-06-03T16:19:46.022Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T11:36:18.360Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T11:36:18.376Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T11:40:33.813Z [[32minfo[39m]: POST - /v1/api/auth/register
+2025-06-04T11:41:30.827Z [[32minfo[39m]: PATCH - /v1/api/auth/verify-email
+2025-06-04T11:41:39.796Z [[32minfo[39m]: POST - /v1/api/auth/login
+2025-06-04T11:49:31.956Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T11:51:24.426Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T11:52:29.399Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T11:52:29.426Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T11:52:58.940Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T12:41:10.148Z [[32minfo[39m]: GET - /v1/api/user/profile
+2025-06-04T12:48:43.847Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T12:48:43.859Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T12:48:49.944Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T12:48:58.957Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T12:49:08.396Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T12:50:38.167Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T12:50:38.177Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T12:55:14.669Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T12:55:14.679Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:05:13.854Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:05:13.866Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:05:48.721Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:05:48.728Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:08:40.763Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:08:40.773Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:09:41.480Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T13:38:22.699Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:38:22.705Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:46:29.634Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:46:29.652Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:47:18.525Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:47:18.536Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:48:23.160Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:48:23.166Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:48:49.013Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T13:53:20.862Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:53:20.869Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:54:23.938Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:54:23.945Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:55:40.223Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T13:55:40.229Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T13:55:46.873Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T13:58:36.569Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T14:22:13.856Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:22:13.864Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:22:46.713Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:22:46.719Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:28:31.087Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:28:31.095Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:30:23.471Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:30:23.477Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:45:48.933Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:45:48.938Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:46:46.831Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:46:46.843Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:49:52.417Z [[31merror[39m]: Error connecting to DB
+2025-06-04T14:49:52.431Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:50:34.215Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:50:34.226Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:50:46.189Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T14:51:23.506Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T14:54:51.260Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:54:51.266Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:55:38.634Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T14:57:18.388Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:57:18.393Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:57:21.578Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T14:58:05.696Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T14:58:05.701Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T14:58:09.018Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T15:00:36.591Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T15:01:08.194Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T15:10:14.008Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T15:10:14.013Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T15:10:18.606Z [[32minfo[39m]: PUT - /v1/api/user/profile
+2025-06-04T15:10:26.455Z [[32minfo[39m]: GET - /v1/api/user/profile
+2025-06-04T15:14:24.786Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T15:14:24.792Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T15:33:16.215Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T15:33:16.231Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T15:36:12.124Z [[32minfo[39m]: POST - /v1/api/user/profile/project
+2025-06-04T15:36:12.126Z [[33mwarn[39m]: Can not find /v1/api/user/profile/project with POST on this server
+2025-06-04T15:36:37.152Z [[32minfo[39m]: POST - /v1/api/user/profile/projects
+2025-06-04T15:39:53.356Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T15:39:53.363Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T15:40:41.530Z [[32minfo[39m]: Successfully connected to DB
+2025-06-04T15:40:41.540Z [[32minfo[39m]: Server running on port 3100
+2025-06-04T15:41:21.154Z [[32minfo[39m]: GET - /v1/api/user/profile/projects
