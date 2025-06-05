@@ -701,3 +701,7 @@
 2025-06-04T15:40:41.530Z [[32minfo[39m]: Successfully connected to DB
 2025-06-04T15:40:41.540Z [[32minfo[39m]: Server running on port 3100
 2025-06-04T15:41:21.154Z [[32minfo[39m]: GET - /v1/api/user/profile/projects
+2025-06-05T09:40:01.271Z [[32minfo[39m]: Successfully connected to DB
+2025-06-05T09:40:01.337Z [[32minfo[39m]: Server running on port 3100
+2025-06-05T09:42:30.523Z [[32minfo[39m]: Successfully connected to DB
+2025-06-05T09:42:30.532Z [[32minfo[39m]: Server running on port 3100
